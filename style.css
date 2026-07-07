@@ -1,0 +1,231 @@
+/* ============================================================
+   近代史文庫 — 民國/archival design
+   Aged paper · ink · seal red. System CJK fonts only (works
+   offline via file://). Dark "ink night" variant via media query.
+   ============================================================ */
+
+:root {
+  --paper: #f4ecdb;          /* aged paper */
+  --paper-deep: #ece1c8;     /* panels, mats */
+  --paper-edge: #d9cba7;     /* rules, borders */
+  --ink: #2b241a;            /* body text */
+  --ink-faint: #6f6250;      /* secondary text */
+  --seal: #9e2f24;           /* 印泥 seal red */
+  --seal-bright: #b83a2c;
+  --shadow: rgba(60, 42, 20, 0.18);
+
+  --serif: "Songti TC", "Songti SC", "Noto Serif TC", "Noto Serif CJK TC", "STSong", Georgia, serif;
+  --kai: "Kaiti TC", "Kaiti SC", "STKaiti", "KaiTi", var(--serif);
+  --mono: "JetBrains Mono", "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #191512;
+    --paper-deep: #211c17;
+    --paper-edge: #3a3227;
+    --ink: #e8dfcf;
+    --ink-faint: #a2937c;
+    --seal: #c8503f;
+    --seal-bright: #d96a55;
+    --shadow: rgba(0, 0, 0, 0.5);
+  }
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 18px;
+  line-height: 2.0;                      /* Chinese body wants air */
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--seal); text-decoration: none; }
+a:hover { color: var(--seal-bright); }
+h1, h2 { font-weight: 600; line-height: 1.35; }
+img { max-width: 100%; display: block; }
+
+/* --- the seal ------------------------------------------------ */
+.seal {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 2.2rem; height: 2.2rem;
+  background: var(--seal); color: var(--paper);
+  font-family: var(--kai); font-size: 1.3rem; font-weight: 700;
+  border-radius: 4px;
+  box-shadow: inset 0 0 0 1.5px var(--paper), inset 0 0 0 3px var(--seal);
+}
+.seal-lg { width: 3.4rem; height: 3.4rem; font-size: 2rem; border-radius: 6px; }
+
+/* ============================================================
+   Index + gallery pages
+   ============================================================ */
+.index-page .wrap { max-width: 720px; margin: 0 auto; padding: 72px 24px 96px; }
+.index-page .wrap.wide { max-width: 1080px; }
+
+.masthead { display: flex; align-items: center; gap: 20px; margin-bottom: 12px; }
+.masthead h1 {
+  margin: 0; font-size: clamp(2rem, 6vw, 2.9rem); letter-spacing: 0.12em;
+}
+.tagline {
+  margin: 2px 0 0; color: var(--ink-faint);
+  font-size: 0.85rem; letter-spacing: 0.22em;
+}
+.top-links { margin: 28px 0 40px; padding-bottom: 18px; border-bottom: 3px double var(--paper-edge); }
+.top-links a { font-size: 1rem; letter-spacing: 0.08em; }
+.home { display: inline-block; margin-bottom: 28px; color: var(--ink-faint); font-size: 0.95rem; }
+
+/* video list: horizontal cards with a map cover */
+.video-list { list-style: none; margin: 0; padding: 0; }
+.video-list li { margin-bottom: 28px; }
+.video-list a {
+  display: flex; gap: 0; align-items: stretch; color: var(--ink);
+  background: var(--paper-deep);
+  border: 1px solid var(--paper-edge);
+  box-shadow: 3px 3px 0 var(--shadow);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+  overflow: hidden;
+}
+.video-list a:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--shadow); }
+.video-list .cover { width: 220px; min-height: 128px; object-fit: cover; border-right: 1px solid var(--paper-edge); }
+.video-list .card-body { padding: 22px 26px; display: flex; flex-direction: column; justify-content: center; gap: 8px; }
+.video-list .card-title { font-size: 1.35rem; font-weight: 600; letter-spacing: 0.05em; }
+.video-list .card-meta { color: var(--ink-faint); font-size: 0.88rem; letter-spacing: 0.06em; }
+
+footer { margin-top: 72px; color: var(--ink-faint); font-size: 0.82rem; letter-spacing: 0.1em; text-align: center; }
+
+/* takedown / attribution notice */
+.notice {
+  margin-top: 64px; padding: 20px 24px;
+  border: 1px solid var(--paper-edge); border-left: 3px solid var(--seal);
+  background: var(--paper-deep);
+  color: var(--ink-faint); font-size: 0.82rem; line-height: 1.9;
+  letter-spacing: 0.03em; text-align: left; max-width: 720px;
+}
+.notice strong { color: var(--ink); font-weight: 600; }
+.video-page .notice { margin: 72px auto 0; }
+
+/* maps gallery grid */
+.map-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 26px; margin-top: 40px;
+}
+.map-card {
+  background: var(--paper-deep); color: var(--ink);
+  border: 1px solid var(--paper-edge);
+  box-shadow: 3px 3px 0 var(--shadow);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+  display: flex; flex-direction: column;
+}
+.map-card:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--shadow); color: var(--ink); }
+.map-card img { aspect-ratio: 16/9; object-fit: cover; border-bottom: 1px solid var(--paper-edge); }
+.map-card-body { padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 6px; }
+.map-caption { font-family: var(--kai); font-size: 0.95rem; line-height: 1.7; }
+.map-source { color: var(--ink-faint); font-size: 0.8rem; letter-spacing: 0.06em; }
+
+/* ============================================================
+   Video page: sidebar + panels
+   ============================================================ */
+.video-page { display: flex; min-height: 100vh; }
+
+.side {
+  width: 264px; flex-shrink: 0;
+  position: sticky; top: 0; align-self: flex-start;
+  height: 100vh; overflow-y: auto;
+  padding: 36px 26px 48px;
+  border-right: 3px double var(--paper-edge);
+  background: var(--paper-deep);
+}
+.masthead-mini { margin: 20px 0 12px; }
+.side-title { font-size: 1.35rem; margin: 0 0 6px; letter-spacing: 0.06em; }
+.side-meta { color: var(--ink-faint); font-size: 0.82rem; letter-spacing: 0.08em; margin-bottom: 22px; }
+
+.tabs { display: flex; gap: 8px; margin-bottom: 24px; }
+.tab-btn {
+  flex: 1; cursor: pointer;
+  font-family: var(--serif); font-size: 0.92rem; letter-spacing: 0.14em;
+  padding: 8px 0; text-align: center;
+  color: var(--ink-faint); background: transparent;
+  border: 1px solid var(--paper-edge);
+}
+.tab-btn.active { background: var(--seal); border-color: var(--seal); color: var(--paper); }
+
+.toc-wrap summary {
+  cursor: pointer; list-style: none;
+  font-size: 0.85rem; letter-spacing: 0.3em; color: var(--ink-faint);
+  border-bottom: 1px solid var(--paper-edge); padding-bottom: 8px; margin-bottom: 10px;
+}
+.toc-wrap summary::-webkit-details-marker { display: none; }
+.toc { display: flex; flex-direction: column; }
+.toc a {
+  font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.04em;
+  color: var(--ink-faint); padding: 4px 10px; border-left: 2px solid transparent;
+}
+.toc a:hover { color: var(--seal); }
+.toc a.active { color: var(--seal); border-left-color: var(--seal); background: var(--paper); }
+
+main { flex: 1; min-width: 0; }
+.panel { display: none; max-width: 720px; margin: 0 auto; padding: 56px 40px 120px; }
+.panel.active { display: block; }
+.panel p { margin: 0 0 22px; text-align: justify; }
+
+/* section headers: seal-red timestamp stamps */
+.panel h2 { margin: 64px 0 28px; border-top: 1px solid var(--paper-edge); padding-top: 30px; }
+.panel h2:first-child { margin-top: 0; border-top: none; padding-top: 0; }
+.stamp {
+  display: inline-block;
+  font-family: var(--mono); font-size: 0.95rem; font-weight: 500; letter-spacing: 0.1em;
+  color: var(--seal); border: 1.5px solid var(--seal);
+  padding: 3px 12px; border-radius: 3px;
+}
+
+/* figures: mounted-print look */
+figure { margin: 40px 0; }
+figure img {
+  cursor: zoom-in;
+  border: 1px solid var(--paper-edge);
+  padding: 8px; background: var(--paper-deep);
+  box-shadow: 3px 3px 0 var(--shadow);
+}
+figcaption {
+  margin-top: 12px; display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap;
+}
+.figtype {
+  font-size: 0.72rem; letter-spacing: 0.18em; color: var(--paper);
+  background: var(--seal); padding: 2px 8px; border-radius: 2px; flex-shrink: 0;
+}
+.figtime { font-family: var(--mono); font-size: 0.78rem; color: var(--ink-faint); flex-shrink: 0; }
+.figtext { font-family: var(--kai); font-size: 0.98rem; line-height: 1.8; color: var(--ink); }
+
+/* lightbox */
+#lightbox {
+  position: fixed; inset: 0; z-index: 50;
+  background: rgba(20, 15, 8, 0.93);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 4vh 4vw; cursor: zoom-out;
+}
+#lightbox[hidden] { display: none; }
+#lightbox img { max-width: 100%; max-height: 84vh; box-shadow: 0 12px 60px rgba(0,0,0,0.6); }
+#lightbox-caption {
+  color: #e8dfcf; font-family: var(--kai); font-size: 1rem;
+  margin-top: 18px; text-align: center; max-width: 70ch;
+}
+
+/* ============================================================
+   Mobile
+   ============================================================ */
+@media (max-width: 860px) {
+  .video-page { flex-direction: column; }
+  .side {
+    position: static; width: 100%; height: auto;
+    border-right: none; border-bottom: 3px double var(--paper-edge);
+    padding: 24px 22px;
+  }
+  .toc-wrap { margin-top: 4px; }
+  .toc-wrap:not([open]) summary { border-bottom: none; margin-bottom: 0; }
+  .toc { max-height: 40vh; overflow-y: auto; }
+  .panel { padding: 36px 22px 90px; }
+  .video-list a { flex-direction: column; }
+  .video-list .cover { width: 100%; border-right: none; border-bottom: 1px solid var(--paper-edge); }
+}
