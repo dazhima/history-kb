@@ -213,6 +213,36 @@ figcaption {
 }
 
 /* ============================================================
+   Reading guide (閱讀指南) — a compact node-and-line diagram (skill-tree
+   style: one numbered stem spine down the left, leaves branching off it
+   with elbow connectors), not stacked text cards and not a general graph.
+   ============================================================ */
+.guide-intro { max-width: 640px; margin: 0 0 40px; color: var(--ink-faint); font-size: 0.95rem; }
+.stem-svg-wrap { width: 100%; overflow-x: auto; }
+.stem-svg { width: 100%; height: auto; min-width: 640px; font-family: var(--serif); }
+
+.stem-spine { fill: none; stroke: var(--seal); stroke-width: 3; opacity: 0.45; }
+.leaf-connector { fill: none; stroke: var(--paper-edge); stroke-width: 2; }
+.span-connector { fill: none; stroke: var(--seal); stroke-width: 1.5; stroke-dasharray: 4 5; opacity: 0.6; }
+
+.node-link { cursor: pointer; }
+.node-link:hover .node-label { fill: var(--seal); }
+.node-link:hover .stem-circle { stroke: var(--seal-bright); }
+.node-link:hover .leaf-circle { fill: var(--seal); }
+
+.stem-circle { fill: var(--seal); stroke: var(--paper); stroke-width: 5; }
+.stem-num {
+  fill: var(--paper); font-family: var(--kai); font-size: 20px; font-weight: 700;
+  text-anchor: middle;
+}
+.leaf-circle { fill: var(--paper-deep); stroke: var(--paper-edge); stroke-width: 2; transition: fill 0.12s ease; }
+
+.node-label { fill: var(--ink); font-family: var(--kai); font-size: 18px; font-weight: 600; }
+.leaf-label { font-size: 15px; }
+.node-caption { fill: var(--ink-faint); font-size: 12px; }
+.span-badge { fill: var(--seal); font-size: 11px; }
+
+/* ============================================================
    Mobile
    ============================================================ */
 @media (max-width: 860px) {
