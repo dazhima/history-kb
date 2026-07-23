@@ -242,6 +242,13 @@ figcaption {
 .node-caption { fill: var(--ink-faint); font-size: 12px; }
 .span-badge { fill: var(--seal); font-size: 11px; }
 
+/* pending stem node: reserved slot for a video not yet built (e.g. still being
+   hunted) — rendered dashed/muted, not a link, so the spine reads as complete
+   from #1 instead of silently starting wherever the first built video lands. */
+.stem-circle-pending { fill: none; stroke: var(--paper-edge); stroke-width: 2; stroke-dasharray: 3 4; }
+.stem-num-pending { fill: var(--ink-faint); font-family: var(--kai); font-size: 20px; font-weight: 700; text-anchor: middle; }
+.node-label-pending { fill: var(--ink-faint); font-family: var(--kai); font-size: 18px; font-weight: 600; font-style: italic; }
+
 /* ============================================================
    Mobile
    ============================================================ */
